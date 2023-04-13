@@ -38,4 +38,4 @@ list.any? { |e| e == 2 }
 
 list.any? { |e| e == 5 }
 
-list.filter { |e| e.even? }
+list.filter { |e| (e % 2).zero? }
