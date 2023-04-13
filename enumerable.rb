@@ -1,31 +1,36 @@
 module Enumerable
-  def Enumerable.any?(list)
+  def self.any?(list)
     return unless block_given?
-    i = 0;
-    while i < list.length
-      return true if yield list[i]
-      i += 1
-    end
-    return false
-  end
 
-  def Enumerable.all?(list)
-    return unless block_given?
     i = 0
     while i < list.length
-      return false if !(yield list[i])
+      return true if yield list[i]
+
       i += 1
     end
-    return true
+    false
   end
 
-  def Enumerable.filter(list)
+  def self.all?(list)
     return unless block_given?
+
+    i = 0
+    while i < list.length
+      return false unless yield list[i]
+
+      i += 1
+    end
+    true
+  end
+
+  def self.filter(list)
+    return unless block_given?
+
     arr = []
     i = 0
     while i < list.length
       arr.push(list[i]) if yield list[i]
-      i +=1
+      i += 1
     end
     arr
   end
